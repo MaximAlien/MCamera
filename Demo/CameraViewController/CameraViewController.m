@@ -107,6 +107,8 @@
     self.mainScrollView.delegate = self;
     self.mainScrollView.minimumZoomScale = 1.0f;
     self.mainScrollView.maximumZoomScale = 4.0f;
+    self.mainScrollView.showsHorizontalScrollIndicator = NO;
+    self.mainScrollView.showsVerticalScrollIndicator = NO;
     [self.mainScrollView addSubview:self.capturedPhotoImageView];
 }
 
@@ -178,6 +180,7 @@
 - (void)setupCameraHoverView {
     self.cameraHoverView = [[CameraHoverView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.cameraHoverView.opaque = NO;
+    self.cameraHoverView.userInteractionEnabled = NO;
     self.cameraHoverView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.cameraHoverView];
 }
@@ -343,8 +346,8 @@
     AVCaptureConnection *videoConnection = nil;
     
     for (AVCaptureConnection *connection in self.captureStillImageOutput.connections) {
-        for (AVCaptureInputPort *port in [connection inputPorts]) {
-            if ([[port mediaType] isEqual:AVMediaTypeVideo]) {
+        for (AVCaptureInputPort *port in connection.inputPorts) {
+            if ([port.mediaType isEqual:AVMediaTypeVideo]) {
                 videoConnection = connection;
                 break;
             }
@@ -390,16 +393,9 @@
             self.selectPhotoButton.hidden = NO;
             self.blurOutButton.hidden = NO;
             
-            self.cameraHoverView.userInteractionEnabled = NO;
-            
-            self.mainScrollView.showsHorizontalScrollIndicator = NO;
-            self.mainScrollView.showsVerticalScrollIndicator = NO;
-            
             [self.mainScrollView scrollRectToVisible:self.mainScrollView.frame animated:NO];
             
             self.capturedPhotoImageView.image = self.selectedImage;
-            
-            imageData = nil;
         }
     }];
 }
@@ -543,11 +539,6 @@
         
         self.selectPhotoButton.hidden = NO;
         self.blurOutButton.hidden = NO;
-        
-        self.cameraHoverView.userInteractionEnabled = NO;
-        
-        self.mainScrollView.showsHorizontalScrollIndicator = NO;
-        self.mainScrollView.showsVerticalScrollIndicator = NO;
     }];
 }
 
