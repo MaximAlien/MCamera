@@ -16,9 +16,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aL-TV-TdK">
-                    <rect key="frame" x="8" y="530" width="304" height="30"/>
+                    <rect key="frame" x="8" y="510" width="304" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="ak4-S8-waP"/>
+                        <constraint firstAttribute="height" constant="50" id="ak4-S8-waP"/>
                     </constraints>
                     <state key="normal" title="Open Camera"/>
                     <connections>

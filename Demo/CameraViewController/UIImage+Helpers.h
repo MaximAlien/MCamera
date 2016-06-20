@@ -12,7 +12,7 @@
 @interface UIImage (Helpers)
 
 + (UIImage *)resizeImage:(UIImage *)image
-                  toSize:(CGSize)dstSize;
+                  toSize:(CGSize)size;
 
 + (UIImage *)croppIngimageByImageName:(UIImage *)imageToCrop
                                toRect:(CGRect)rect
@@ -28,4 +28,8 @@
                   withImage2:(UIImage *)img2
                      andRect:(CGRect)cropRect
                         size:(CGSize)size;
+
++ (UIImage *)scaleImage:(UIImage *)image
+                 toSize:(CGSize)size;
+
 @end

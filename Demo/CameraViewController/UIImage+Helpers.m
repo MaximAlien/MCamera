@@ -11,16 +11,16 @@
 @implementation UIImage (Helpers)
 
 + (UIImage *)resizeImage:(UIImage *)image
-                  toSize:(CGSize)dstSize {
-    CGImageRef imgRef = image.CGImage;
+                  toSize:(CGSize)size {
+    CGImageRef imageRef = image.CGImage;
     // the below values are regardless of orientation : for UIImages from Camera, width>height (landscape)
-    CGSize  srcSize = CGSizeMake(CGImageGetWidth(imgRef), CGImageGetHeight(imgRef)); // not equivalent to self.size (which is dependant on the imageOrientation)!
+    CGSize srcSize = CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef)); // not equivalent to self.size (which is dependant on the imageOrientation)!
     
-    CGFloat scaleRatio = dstSize.width / srcSize.width;
-    UIImageOrientation orient = image.imageOrientation;
+    CGFloat scaleRatio = size.width / srcSize.width;
+    UIImageOrientation orientation = image.imageOrientation;
     CGAffineTransform transform = CGAffineTransformIdentity;
     
-    switch (orient) {
+    switch (orientation) {
         case UIImageOrientationUp: //EXIF = 1
             transform = CGAffineTransformIdentity;
             break;
@@ -41,41 +41,40 @@
             break;
             
         case UIImageOrientationLeftMirrored: //EXIF = 5
-            dstSize = CGSizeMake(dstSize.height, dstSize.width);
+            size = CGSizeMake(size.height, size.width);
             transform = CGAffineTransformMakeTranslation(srcSize.height, srcSize.width);
             transform = CGAffineTransformScale(transform, -1.0, 1.0);
             transform = CGAffineTransformRotate(transform, 3.0 * M_PI_2);
             break;
             
         case UIImageOrientationLeft: //EXIF = 6
-            dstSize = CGSizeMake(dstSize.height, dstSize.width);
+            size = CGSizeMake(size.height, size.width);
             transform = CGAffineTransformMakeTranslation(0.0, srcSize.width);
             transform = CGAffineTransformRotate(transform, 3.0 * M_PI_2);
             break;
             
         case UIImageOrientationRightMirrored: //EXIF = 7
-            dstSize = CGSizeMake(dstSize.height, dstSize.width);
+            size = CGSizeMake(size.height, size.width);
             transform = CGAffineTransformMakeScale(-1.0, 1.0);
             transform = CGAffineTransformRotate(transform, M_PI_2);
             break;
             
         case UIImageOrientationRight: //EXIF = 8
-            dstSize = CGSizeMake(dstSize.height, dstSize.width);
+            size = CGSizeMake(size.height, size.width);
             transform = CGAffineTransformMakeTranslation(srcSize.height, 0.0);
             transform = CGAffineTransformRotate(transform, M_PI_2);
             break;
             
         default:
             [NSException raise:NSInternalInconsistencyException format:@"Invalid image orientation"];
-            
     }
     
     // The actual resize: draw the image on a new context, applying a transform matrix
-    UIGraphicsBeginImageContextWithOptions(dstSize, NO, 0.0);
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    if (orient == UIImageOrientationRight || orient == UIImageOrientationLeft) {
+    if (orientation == UIImageOrientationRight || orientation == UIImageOrientationLeft) {
         CGContextScaleCTM(context, -scaleRatio, scaleRatio);
         CGContextTranslateCTM(context, -srcSize.height, 0);
     } else {
@@ -86,7 +85,7 @@
     CGContextConcatCTM(context, transform);
     
     // we use srcSize (and not dstSize) as the size to specify is in user space (and we use the CTM to apply a scaleRatio)
-    CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, srcSize.width, srcSize.height), imgRef);
+    CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, srcSize.width, srcSize.height), imageRef);
     UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
@@ -123,10 +122,10 @@
     rectTransform = CGAffineTransformScale(rectTransform, imageToCrop.scale, imageToCrop.scale);
     
     CGImageRef imageRef = CGImageCreateWithImageInRect([imageToCrop CGImage], CGRectApplyAffineTransform(rect, rectTransform));
-    UIImage *cropped = [UIImage imageWithCGImage:imageRef scale:imageToCrop.scale orientation:orientation];
+    UIImage *croppedImage = [UIImage imageWithCGImage:imageRef scale:imageToCrop.scale orientation:orientation];
     CGImageRelease(imageRef);
     
-    return cropped;
+    return croppedImage;
 }
 
 + (UIImage *)roundedRectImageFromImage:(UIImage *)image
@@ -151,8 +150,8 @@
         CGContextTranslateCTM(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
         CGContextScaleCTM(context, radius, radius);
         
-        CGFloat rectWidth = CGRectGetWidth (rect) / radius;
-        CGFloat rectHeight = CGRectGetHeight (rect) / radius;
+        CGFloat rectWidth = CGRectGetWidth(rect) / radius;
+        CGFloat rectHeight = CGRectGetHeight(rect) / radius;
         
         CGContextMoveToPoint(context, rectWidth, rectHeight / 2.0f);
         CGContextAddArcToPoint(context, rectWidth, rectHeight, rectWidth / 2.0f, rectHeight, radius);
@@ -206,6 +205,30 @@
     }
     
     return nil;
+}
+
++ (UIImage *)scaleImage:(UIImage *)image
+                 toSize:(CGSize)size {
+    CGSize scaledSize = size;
+    float scaleFactor = 1.0f;
+    
+    if (image.size.width > image.size.height) {
+        scaleFactor = image.size.width / image.size.height;
+        scaledSize.width = size.width;
+        scaledSize.height = size.height / scaleFactor;
+    } else {
+        scaleFactor = image.size.height / image.size.width;
+        scaledSize.height = size.height;
+        scaledSize.width = size.width / scaleFactor;
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(scaledSize, NO, 0.0f);
+    CGRect scaledImageRect = CGRectMake(0.0f, 0.0f, scaledSize.width, scaledSize.height);
+    [image drawInRect:scaledImageRect];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;
 }
 
 @end

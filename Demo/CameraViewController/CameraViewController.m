@@ -20,36 +20,37 @@
 
 @interface CameraViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
 
-@property(nonatomic,strong) AVCaptureSession *captureSession;
-@property(nonatomic,strong) AVCaptureStillImageOutput *captureStillImageOutput;
-@property(nonatomic,strong) AVCaptureDevice *captureDevice;
-@property(nonatomic,strong) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
+@property(nonatomic, strong) AVCaptureSession *captureSession;
+@property(nonatomic, strong) AVCaptureStillImageOutput *captureStillImageOutput;
+@property(nonatomic, strong) AVCaptureDevice *captureDevice;
+@property(nonatomic, strong) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
 
-@property(nonatomic,strong) UIImageView *capturedPhotoImageView;
+@property(nonatomic, strong) UIImageView *capturedPhotoImageView;
 
-@property(nonatomic,strong) UIImage *selectedImage;
-@property(nonatomic,strong) UIImage *croppedImage;
+@property(nonatomic, strong) UIImage *selectedImage;
+@property(nonatomic, strong) UIImage *croppedImage;
 
-@property(nonatomic,strong) CameraScrollView *mainScrollView;
-@property(nonatomic,strong) CameraHoverView *cameraHoverView;
+@property(nonatomic, strong) CameraScrollView *mainScrollView;
+@property(nonatomic, strong) CameraHoverView *cameraHoverView;
 
-@property(nonatomic,strong) UIButton *selectPhotoButton;
-@property(nonatomic,strong) UIButton *dismissSelectedPhotoButton;
-@property(nonatomic,strong) UIButton *cameraButton;
-@property(nonatomic,strong) UIButton *switchFilterLeftButton;
-@property(nonatomic,strong) UIButton *switchFilterRightButton;
-@property(nonatomic,strong) UIButton *blurOutButton;
+@property(nonatomic, strong) UIButton *selectPhotoButton;
+@property(nonatomic, strong) UIButton *dismissSelectedPhotoButton;
+@property(nonatomic, strong) UIButton *cameraButton;
+@property(nonatomic, strong) UIButton *switchFilterLeftButton;
+@property(nonatomic, strong) UIButton *switchFilterRightButton;
+@property(nonatomic, strong) UIButton *blurOutButton;
 
-@property(nonatomic,strong) UIView *selectedImageView;
+@property(nonatomic, strong) UIView *selectedImageView;
 
 @property(nonatomic) NSUInteger currentFilter;
 
-@property(nonatomic) BOOL isFrontCameraUsed;
 @property(nonatomic) BOOL isCapturingImage;
 
 @end
 
 @implementation CameraViewController
+
+#pragma mark - UIViewController lifecycle methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,10 +69,38 @@
         [self setupDismissSelectedPhotoButton];
         [self setupSelectFromPhotoLibraryButton];
         [self setupBlurOutButton];
+        [self setupMainScrollView];
+        [self setupSelectedImageView];
     } else {
         NSLog(@"Unable to setup valid capture session");
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
+    [self.captureSession startRunning];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.captureSession stopRunning];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+#pragma mark - Setting-up methods
+
+- (void)setupSelectedImageView {
+    self.selectedImageView = [[UIView alloc] initWithFrame:self.view.frame];
+    [self.selectedImageView setBackgroundColor:[UIColor blackColor]];
+    [self.selectedImageView addSubview:self.mainScrollView];
+}
+
+- (void)setupMainScrollView {
     self.mainScrollView = [[CameraScrollView alloc] initWithFrame:self.view.frame];
     self.mainScrollView.alwaysBounceHorizontal = YES;
     self.mainScrollView.alwaysBounceVertical = YES;
@@ -79,10 +108,6 @@
     self.mainScrollView.minimumZoomScale = 1.0f;
     self.mainScrollView.maximumZoomScale = 4.0f;
     [self.mainScrollView addSubview:self.capturedPhotoImageView];
-    
-    self.selectedImageView = [[UIView alloc] initWithFrame:self.view.frame];
-    [self.selectedImageView setBackgroundColor:[UIColor redColor]];
-    [self.selectedImageView addSubview:self.mainScrollView];
 }
 
 - (void)setupBlurOutButton {
@@ -214,10 +239,6 @@
     [self.view addSubview:self.switchFilterRightButton];
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
 - (void)swipeRight:(UITapGestureRecognizer *)recognizer {
     if (self.currentFilter == 1) {
         self.currentFilter = 7;
@@ -276,14 +297,14 @@
         UITouch *touch = [touches anyObject];
         CGPoint currentPoint = [touch locationInView:self.mainScrollView];
         
-        double ratioW = self.capturedPhotoImageView.image.size.width / self.capturedPhotoImageView.frame.size.width;
-        double ratioH = self.capturedPhotoImageView.image.size.height / self.capturedPhotoImageView.frame.size.height;
+        double widthRatio = self.capturedPhotoImageView.image.size.width / self.capturedPhotoImageView.frame.size.width;
+        double heightRatio = self.capturedPhotoImageView.image.size.height / self.capturedPhotoImageView.frame.size.height;
         
-        currentPoint.x *= ratioW;
-        currentPoint.y *= ratioH;
+        currentPoint.x *= widthRatio;
+        currentPoint.y *= heightRatio;
         
-        double circleSizeW = 50 * ratioW * self.mainScrollView.zoomScale;
-        double circleSizeH = 50 * ratioH * self.mainScrollView.zoomScale;
+        double circleSizeW = 50 * widthRatio * self.mainScrollView.zoomScale;
+        double circleSizeH = 50 * heightRatio * self.mainScrollView.zoomScale;
         
         currentPoint.x = (currentPoint.x - circleSizeW / 2 < 0) ? 0 : currentPoint.x - circleSizeW / 2;
         currentPoint.y = (currentPoint.y - circleSizeH / 2 < 0) ? 0 : currentPoint.y - circleSizeH / 2;
@@ -308,18 +329,6 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     [self applyBlur:touches];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.captureSession startRunning];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    [self.captureSession stopRunning];
 }
 
 - (void)capturePhoto:(id)sender {
@@ -351,9 +360,8 @@
             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
             UIImage *capturedImage = [[UIImage alloc] initWithData:imageData];
             
-            if (self.isFrontCameraUsed) {
+            if (self.captureDevice == [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo][1]) {
                 UIImage *flippedImage = [UIImage imageWithCGImage:capturedImage.CGImage scale:capturedImage.scale orientation:UIImageOrientationLeftMirrored];
-                
                 self.selectedImage = flippedImage;
             }
             else {
@@ -396,12 +404,8 @@
     }];
 }
 
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return self.capturedPhotoImageView;
-}
-
 - (void)switchFlash:(id)sender {
-    if ([self.captureDevice isFlashAvailable]) {
+    if (self.captureDevice.isFlashAvailable) {
         if (self.captureDevice.flashActive) {
             if ([self.captureDevice lockForConfiguration:nil]) {
                 self.captureDevice.flashMode = AVCaptureFlashModeOff;
@@ -421,36 +425,30 @@
 }
 
 - (void)showFrontCamera:(id)sender {
+    AVCaptureDevice *backCaptureDevice = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo][0];
+    AVCaptureDevice *frontCaptureDevice = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo][1];
+    
     if (!self.isCapturingImage) {
-        if (self.captureDevice == [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo][0]) {
-            self.isFrontCameraUsed = YES;
-            
-            self.captureDevice = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo][1];
-            
-            [self.captureSession beginConfiguration];
-            AVCaptureDeviceInput *newInput = [AVCaptureDeviceInput deviceInputWithDevice:self.captureDevice error:nil];
-            
-            for (AVCaptureInput *oldInput in self.captureSession.inputs) {
-                [self.captureSession removeInput:oldInput];
-            }
-            
-            [self.captureSession addInput:newInput];
-            [self.captureSession commitConfiguration];
-        } else if (self.captureDevice == [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo][1]) {
-            self.isFrontCameraUsed = NO;
-            
-            self.captureDevice = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo][0];
-            [self.captureSession beginConfiguration];
-            AVCaptureDeviceInput *newInput = [AVCaptureDeviceInput deviceInputWithDevice:self.captureDevice error:nil];
-            
-            for (AVCaptureInput *oldInput in self.captureSession.inputs) {
-                [self.captureSession removeInput:oldInput];
-            }
-            
-            [self.captureSession addInput:newInput];
-            [self.captureSession commitConfiguration];
+        if (self.captureDevice == backCaptureDevice) {
+            self.captureDevice = frontCaptureDevice;
+        } else if (self.captureDevice == frontCaptureDevice) {
+            self.captureDevice = backCaptureDevice;
         }
+        
+        [self switchCaptureDevice];
     }
+}
+
+- (void)switchCaptureDevice {
+    [self.captureSession beginConfiguration];
+    AVCaptureDeviceInput *newInput = [AVCaptureDeviceInput deviceInputWithDevice:self.captureDevice error:nil];
+    
+    for (AVCaptureInput *oldInput in self.captureSession.inputs) {
+        [self.captureSession removeInput:oldInput];
+    }
+    
+    [self.captureSession addInput:newInput];
+    [self.captureSession commitConfiguration];
 }
 
 - (void)blurOut:(id)sender {
@@ -504,32 +502,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (UIImage *)scaleImage:(UIImage*)image toSize:(CGSize)newSize {
-    CGSize scaledSize = newSize;
-    float scaleFactor = 1.0f;
-    
-    if (image.size.width > image.size.height) {
-        scaleFactor = image.size.width / image.size.height;
-        scaledSize.width = newSize.width;
-        scaledSize.height = newSize.height / scaleFactor;
-    } else {
-        scaleFactor = image.size.height / image.size.width;
-        scaledSize.height = newSize.height;
-        scaledSize.width = newSize.width / scaleFactor;
-    }
-    
-    UIGraphicsBeginImageContextWithOptions(scaledSize, NO, 0.0);
-    CGRect scaledImageRect = CGRectMake(0.0, 0.0, scaledSize.width, scaledSize.height);
-    [image drawInRect:scaledImageRect];
-    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return scaledImage;
-}
-
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    self.mainScrollView.frame = CGRectMake(1,
-                                           SCREEN_HEIGHT - SCREEN_WIDTH - SCREEN_WIDTH / 2.5,
+    self.mainScrollView.frame = CGRectMake(1.0f,
+                                           SCREEN_HEIGHT - SCREEN_WIDTH - SCREEN_WIDTH / 2.5f,
                                            SCREEN_WIDTH,
                                            SCREEN_WIDTH);
     
@@ -538,8 +513,8 @@
     CGFloat coef1 = originalImage.size.width / self.mainScrollView.frame.size.width;
     CGFloat coef2 = originalImage.size.height / self.mainScrollView.frame.size.height;
     
-    UIImage *resizedImage = [self scaleImage:originalImage toSize:CGSizeMake(originalImage.size.width / coef1,
-                                                                             originalImage.size.height / coef2)];
+    UIImage *resizedImage = [UIImage scaleImage:originalImage toSize:CGSizeMake(originalImage.size.width / coef1,
+                                                                                originalImage.size.height / coef2)];
     self.selectedImage = resizedImage;
     
     self.capturedPhotoImageView.image = self.selectedImage;
