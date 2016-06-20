@@ -8,8 +8,6 @@
 
 @import AVFoundation;
 
-#import <GPUImage.h>
-
 #import "CameraViewController.h"
 #import "CameraHoverView.h"
 #import "CameraScrollView.m"
