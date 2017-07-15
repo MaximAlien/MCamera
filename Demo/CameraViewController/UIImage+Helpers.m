@@ -95,7 +95,7 @@
 + (UIImage *)croppIngimageByImageName:(UIImage *)imageToCrop
                                toRect:(CGRect)rect
                           orientation:(UIImageOrientation)orientation {
-    CGAffineTransform rectTransform;
+    CGAffineTransform rectTransform = CGAffineTransformIdentity;
     
     switch (imageToCrop.imageOrientation) {
         case UIImageOrientationLeft:
