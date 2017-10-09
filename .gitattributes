@@ -1,2 +1,1 @@
-*.pbxproj binary -merge=union
-Podfile linguist-documentation
+Podfile export-ignore
