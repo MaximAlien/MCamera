@@ -21,6 +21,7 @@
 		6D460D161D12A3F200B4DF52 /* Valencia.acv in Resources */ = {isa = PBXBuildFile; fileRef = 6D460D111D12A3F200B4DF52 /* Valencia.acv */; };
 		6D460D171D12A3F200B4DF52 /* X-PRO II.acv in Resources */ = {isa = PBXBuildFile; fileRef = 6D460D121D12A3F200B4DF52 /* X-PRO II.acv */; };
 		6D460D1A1D12A43800B4DF52 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D460D191D12A43800B4DF52 /* CameraViewController.m */; };
+		6DD1A4391F910EFF007BCBFA /* CameraScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD1A4381F910EFF007BCBFA /* CameraScrollView.m */; };
 		831D97C01AA08886501054FE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EC913E050E916B059F8288C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,8 @@
 		6D460D121D12A3F200B4DF52 /* X-PRO II.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = "X-PRO II.acv"; sourceTree = "<group>"; };
 		6D460D181D12A43800B4DF52 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		6D460D191D12A43800B4DF52 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		6DD1A4371F910EFF007BCBFA /* CameraScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraScrollView.h; sourceTree = "<group>"; };
+		6DD1A4381F910EFF007BCBFA /* CameraScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraScrollView.m; sourceTree = "<group>"; };
 		7EC913E050E916B059F8288C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE3F5C9A537E012D9F064668 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E09A0AFCE41AA52D9C1351F7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				6D460D0D1D12A3F200B4DF52 /* Filters */,
+				6DD1A4371F910EFF007BCBFA /* CameraScrollView.h */,
+				6DD1A4381F910EFF007BCBFA /* CameraScrollView.m */,
 				6D460D071D12A37D00B4DF52 /* CameraHoverView.h */,
 				6D460D081D12A37D00B4DF52 /* CameraHoverView.m */,
 				6D0167471D12A80D00E7D37D /* UIImage+Helpers.h */,
@@ -280,6 +285,7 @@
 				6D460CEC1D12A1B200B4DF52 /* AppDelegate.m in Sources */,
 				6D460D1A1D12A43800B4DF52 /* CameraViewController.m in Sources */,
 				6D460D011D12A24300B4DF52 /* MainViewController.m in Sources */,
+				6DD1A4391F910EFF007BCBFA /* CameraScrollView.m in Sources */,
 				6D460CE91D12A1B200B4DF52 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

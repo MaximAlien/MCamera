@@ -10,7 +10,7 @@
 
 #import "CameraViewController.h"
 #import "CameraHoverView.h"
-#import "CameraScrollView.m"
+#import "CameraScrollView.h"
 #import "UIImage+Helpers.h"
 
 #define SCREEN_WIDTH UIScreen.mainScreen.bounds.size.width
