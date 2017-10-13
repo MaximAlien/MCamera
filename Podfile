@@ -1,3 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-pod 'GPUImage'
+target 'Demo' do
+	pod 'GPUImage'
+end
