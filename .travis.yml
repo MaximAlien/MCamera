@@ -5,7 +5,7 @@ podfile: Demo/Podfile
 script:
   xcodebuild clean build
   -sdk iphonesimulator
-  -project Demo/MCameraDemo.xcodeproj
+  -workspace Demo/MCameraDemo.xcworkspace
   -scheme MCameraDemo
   CODE_SIGNING_REQUIRED=NO
 
