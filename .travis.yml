@@ -1,0 +1,13 @@
+language: objective-c
+osx_image: xcode9.1
+podfile: Demo/Podfile
+
+script:
+  xcodebuild clean build
+  -sdk iphonesimulator
+  -project Demo/MCameraDemo.xcodeproj
+  -scheme MCameraDemo
+  CODE_SIGNING_REQUIRED=NO
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
