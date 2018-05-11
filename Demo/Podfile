@@ -1,5 +1,0 @@
-source 'https://github.com/CocoaPods/Specs.git'
-
-target 'MCameraDemo' do
-	pod 'GPUImage', '~> 0.1.7'
-end

@@ -173,18 +173,6 @@
     return nil;
 }
 
-+ (UIImage *)applyBlurOnImage:(UIImage *)imageToBlur
-                   withRadius:(NSInteger)blurRadius {
-    GPUImageGaussianBlurFilter *blurFilter = [GPUImageGaussianBlurFilter new];
-    blurFilter.blurRadiusInPixels = blurRadius;
-    
-    if (imageToBlur) {
-        return [blurFilter imageByFilteringImage:imageToBlur];
-    }
-    
-    return nil;
-}
-
 + (UIImage *)addImageToImage:(UIImage *)img
                   withImage2:(UIImage *)img2
                      andRect:(CGRect)cropRect

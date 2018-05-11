@@ -7,24 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D216F3D20A5DD2400062D94 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D216F3B20A5DD2400062D94 /* CameraViewController.m */; };
+		6D216F3E20A5DD2400062D94 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D216F3C20A5DD2400062D94 /* CameraViewController.xib */; };
 		6D34259F1FD6E52B0092517E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D34259E1FD6E52B0092517E /* AppDelegate.m */; };
 		6D3425A71FD6E52B0092517E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D3425A61FD6E52B0092517E /* Assets.xcassets */; };
 		6D3425AA1FD6E52B0092517E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D3425A81FD6E52B0092517E /* LaunchScreen.storyboard */; };
 		6D3425AD1FD6E52B0092517E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3425AC1FD6E52B0092517E /* main.m */; };
-		6D3425C21FD6E5770092517E /* CameraHoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3425B51FD6E5770092517E /* CameraHoverView.m */; };
 		6D3425C31FD6E5770092517E /* CameraScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3425B71FD6E5770092517E /* CameraScrollView.m */; };
-		6D3425C41FD6E5770092517E /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3425B91FD6E5770092517E /* CameraViewController.m */; };
-		6D3425C51FD6E5770092517E /* BlackAndWhite.acv in Resources */ = {isa = PBXBuildFile; fileRef = 6D3425BB1FD6E5770092517E /* BlackAndWhite.acv */; };
-		6D3425C61FD6E5770092517E /* EarlyBird.acv in Resources */ = {isa = PBXBuildFile; fileRef = 6D3425BC1FD6E5770092517E /* EarlyBird.acv */; };
-		6D3425C71FD6E5770092517E /* Nashville.acv in Resources */ = {isa = PBXBuildFile; fileRef = 6D3425BD1FD6E5770092517E /* Nashville.acv */; };
-		6D3425C81FD6E5770092517E /* Valencia.acv in Resources */ = {isa = PBXBuildFile; fileRef = 6D3425BE1FD6E5770092517E /* Valencia.acv */; };
-		6D3425C91FD6E5770092517E /* X-PRO II.acv in Resources */ = {isa = PBXBuildFile; fileRef = 6D3425BF1FD6E5770092517E /* X-PRO II.acv */; };
 		6D3425CE1FD6E58F0092517E /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D3425CC1FD6E58F0092517E /* MainViewController.xib */; };
 		6D3425CF1FD6E58F0092517E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3425CD1FD6E58F0092517E /* MainViewController.m */; };
 		6D3425D31FD6E9260092517E /* UIImage+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3425D21FD6E9260092517E /* UIImage+Helpers.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6D216F3A20A5DD2400062D94 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		6D216F3B20A5DD2400062D94 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		6D216F3C20A5DD2400062D94 /* CameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
 		6D34259A1FD6E52A0092517E /* MCameraDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MCameraDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D34259D1FD6E52B0092517E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D34259E1FD6E52B0092517E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -32,17 +30,8 @@
 		6D3425A91FD6E52B0092517E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D3425AB1FD6E52B0092517E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D3425AC1FD6E52B0092517E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6D3425B41FD6E5770092517E /* CameraHoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraHoverView.h; sourceTree = "<group>"; };
-		6D3425B51FD6E5770092517E /* CameraHoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraHoverView.m; sourceTree = "<group>"; };
 		6D3425B61FD6E5770092517E /* CameraScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraScrollView.h; sourceTree = "<group>"; };
 		6D3425B71FD6E5770092517E /* CameraScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraScrollView.m; sourceTree = "<group>"; };
-		6D3425B81FD6E5770092517E /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
-		6D3425B91FD6E5770092517E /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
-		6D3425BB1FD6E5770092517E /* BlackAndWhite.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = BlackAndWhite.acv; sourceTree = "<group>"; };
-		6D3425BC1FD6E5770092517E /* EarlyBird.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = EarlyBird.acv; sourceTree = "<group>"; };
-		6D3425BD1FD6E5770092517E /* Nashville.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nashville.acv; sourceTree = "<group>"; };
-		6D3425BE1FD6E5770092517E /* Valencia.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = Valencia.acv; sourceTree = "<group>"; };
-		6D3425BF1FD6E5770092517E /* X-PRO II.acv */ = {isa = PBXFileReference; lastKnownFileType = file; path = "X-PRO II.acv"; sourceTree = "<group>"; };
 		6D3425CB1FD6E58F0092517E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6D3425CC1FD6E58F0092517E /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		6D3425CD1FD6E58F0092517E /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -98,28 +87,14 @@
 			isa = PBXGroup;
 			children = (
 				6D3425D01FD6E9260092517E /* Categories */,
-				6D3425BA1FD6E5770092517E /* Filters */,
-				6D3425B41FD6E5770092517E /* CameraHoverView.h */,
-				6D3425B51FD6E5770092517E /* CameraHoverView.m */,
 				6D3425B61FD6E5770092517E /* CameraScrollView.h */,
 				6D3425B71FD6E5770092517E /* CameraScrollView.m */,
-				6D3425B81FD6E5770092517E /* CameraViewController.h */,
-				6D3425B91FD6E5770092517E /* CameraViewController.m */,
+				6D216F3A20A5DD2400062D94 /* CameraViewController.h */,
+				6D216F3B20A5DD2400062D94 /* CameraViewController.m */,
+				6D216F3C20A5DD2400062D94 /* CameraViewController.xib */,
 			);
 			name = CameraViewController;
 			path = ../../CameraViewController;
-			sourceTree = "<group>";
-		};
-		6D3425BA1FD6E5770092517E /* Filters */ = {
-			isa = PBXGroup;
-			children = (
-				6D3425BB1FD6E5770092517E /* BlackAndWhite.acv */,
-				6D3425BC1FD6E5770092517E /* EarlyBird.acv */,
-				6D3425BD1FD6E5770092517E /* Nashville.acv */,
-				6D3425BE1FD6E5770092517E /* Valencia.acv */,
-				6D3425BF1FD6E5770092517E /* X-PRO II.acv */,
-			);
-			path = Filters;
 			sourceTree = "<group>";
 		};
 		6D3425D01FD6E9260092517E /* Categories */ = {
@@ -157,7 +132,7 @@
 		6D3425921FD6E52A0092517E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Maxim Makhun";
 				TargetAttributes = {
 					6D3425991FD6E52A0092517E = {
@@ -189,14 +164,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D216F3E20A5DD2400062D94 /* CameraViewController.xib in Resources */,
 				6D3425AA1FD6E52B0092517E /* LaunchScreen.storyboard in Resources */,
-				6D3425C51FD6E5770092517E /* BlackAndWhite.acv in Resources */,
-				6D3425C91FD6E5770092517E /* X-PRO II.acv in Resources */,
 				6D3425CE1FD6E58F0092517E /* MainViewController.xib in Resources */,
 				6D3425A71FD6E52B0092517E /* Assets.xcassets in Resources */,
-				6D3425C61FD6E5770092517E /* EarlyBird.acv in Resources */,
-				6D3425C71FD6E5770092517E /* Nashville.acv in Resources */,
-				6D3425C81FD6E5770092517E /* Valencia.acv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,13 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D3425C41FD6E5770092517E /* CameraViewController.m in Sources */,
 				6D3425C31FD6E5770092517E /* CameraScrollView.m in Sources */,
 				6D3425AD1FD6E52B0092517E /* main.m in Sources */,
 				6D3425CF1FD6E58F0092517E /* MainViewController.m in Sources */,
+				6D216F3D20A5DD2400062D94 /* CameraViewController.m in Sources */,
 				6D3425D31FD6E9260092517E /* UIImage+Helpers.m in Sources */,
 				6D34259F1FD6E52B0092517E /* AppDelegate.m in Sources */,
-				6D3425C21FD6E5770092517E /* CameraHoverView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +215,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -252,6 +223,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -279,7 +251,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -300,6 +272,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -307,6 +280,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -328,7 +302,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -342,8 +316,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P4RNZKZ54K;
 				INFOPLIST_FILE = MCameraDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.makhun.MCameraDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.makhun.MCameraDemo123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -356,8 +331,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P4RNZKZ54K;
 				INFOPLIST_FILE = MCameraDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.makhun.MCameraDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.makhun.MCameraDemo123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

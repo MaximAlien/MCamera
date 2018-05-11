@@ -7,7 +7,6 @@
 //
 
 @import UIKit;
-#import <GPUImage.h>
 
 @interface UIImage (Helpers)
 
@@ -20,9 +19,6 @@
 
 + (UIImage *)roundedRectImageFromImage:(UIImage *)image
                            withRadious:(CGFloat)radius;
-
-+ (UIImage *)applyBlurOnImage:(UIImage *)imageToBlur
-                   withRadius:(NSInteger)blurRadius;
 
 + (UIImage *)addImageToImage:(UIImage *)img
                   withImage2:(UIImage *)img2
